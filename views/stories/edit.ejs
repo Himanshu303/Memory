@@ -1,0 +1,37 @@
+<h3>Add Story</h3>
+<div class="row">
+    <form action="/stories/edit/<%=story._id%>?_method=PUT" method="POST" class="col s12">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="title" name="title" value="<%= story.title %>">
+                <label for="title">Title</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <select id="status" name="status">
+                    <% for(let status of statusList){ %>
+                      <option value="<%= status %>"  <%= status==story.status ? 'selected': '' %>><%=status%> </option>
+                      <% } %>
+
+                </select>
+                <label for="status">Status</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <h5>Tell Us Your Story:</h5>
+                <textarea id="body" name="body"><%= story.body %></textarea>
+            </div>
+        </div>
+
+     
+          <button class="btn waves-effect waves-light" type="submit" name="action">Edit
+            
+          </button>
+            <a href="/dashboard" class="btn waves-effect waves-light red">Cancel</a>
+  
+    </form>
+</div>
