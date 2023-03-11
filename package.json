@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "App to create public and private stories on your life",
   "main": "app.js",
+  "engines": {"node": "14.x"},
   "scripts": {
     "start": "node app.js"
   },
