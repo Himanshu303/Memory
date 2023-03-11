@@ -68,13 +68,17 @@ if(process.env.NODE_ENV==="development"){
   app.use(morgan('dev'));
 }
 
-//Routes
-app.use("/",require("./routes/index"))
-app.use("/auth",require("./routes/auth"))
-app.use("/stories",require("./routes/stories"))
+
+
+
 //Static folder
 app.use(express.static(path.join(__dirname,'public')));
 
 const PORT=process.env.PORT || 4200;
+
+//Routes
+app.use("/",require("./routes/index"))
+app.use("/auth",require("./routes/auth"))
+app.use("/stories",require("./routes/stories"))
 
 app.listen(PORT,console.log(`Server running in ${process.env.NODE_ENV} mode on PORT ${PORT}`));
