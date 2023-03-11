@@ -1,19 +1,17 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Memory</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/stories">Stories</a>
-        <a class="nav-link" href="/dashboard">Dashboard</a>
-      </div>
-      <div class="navbar-nav ms-auto">
-  
-          <a class="nav-link" href="/auth/logout">Logout</a>
-   
-      </div>
-    </div>
+<nav>
+  <div class="nav-wrapper black">
+    <a href="#!" class="brand-logo">Memory</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"> <i class="fas fa-bars"></i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="/stories">Stories</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+    </ul>
   </div>
 </nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/stories">Stories</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+</ul>

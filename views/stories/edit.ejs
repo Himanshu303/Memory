@@ -1,6 +1,7 @@
-<h3>Add Story</h3>
+<h3>Edit Story</h3>
 <div class="row">
     <form action="/stories/edit/<%=story._id%>?_method=PUT" method="POST" class="col s12">
+      <br>
         <div class="row">
             <div class="input-field">
                 <input type="text" id="title" name="title" value="<%= story.title %>">
