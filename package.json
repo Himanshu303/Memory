@@ -4,8 +4,7 @@
   "description": "App to create public and private stories on your life",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app",
-    "dev": "cross-env NODE_ENV=development nodemon app"
+    "start": "node app.js"
   },
   "author": "Himanshu Marathe",
   "license": "MIT",
