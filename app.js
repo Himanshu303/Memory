@@ -49,7 +49,6 @@ app.use(session(sessionConfig));
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.get('/favicon.ico', (req, res) => res.status(204));
 
 //set global variable
 app.use((req,res,next)=>{
