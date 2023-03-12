@@ -1,46 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Memory</title>
-  
+
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/style.css">
-  <script type="javascript"> 
- 
+  <script type="javascript">
+
 
    </script>
 </head>
+
 <body class="d-flex flex-column vh-100">
-  
-     <%- include("../partials/navbar") %> 
+
+  <%- include("../partials/navbar") %>
     <div class="container">
-      <%- body %> 
-      <%- include("../partials/add-btn") %> 
+      <%- body %>
+        <%- include("../partials/add-btn") %>
     </div>
 
- 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
-  
-      </script>
 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.validate');
+        console.log(elems);
+        var options = {
+          classes: {
+            invalid: 'invalid',
+            valid: 'valid'
+          },
+          focusInvalid: true,
+          onSubmit: function () {
+            console.log('Form submitted!');
+          },
+          onValid: function () {
+            console.log('Field validated successfully!');
+          },
+          onInvalid: function () {
+            console.log('Field validation failed!');
+          },
+          onSuccess: function () {
+            console.log('Form validated successfully!');
+          },
+          onError: function () {
+            console.log('Form validation failed!');
+          }
+        };
+        console.log(M.FormValidation)
+        console.log(M.FormValidation)
+        //var instances = M.FormValidation.init(elems, options);
+      });
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
+      integrity="sha512-P4rrEImABBYtBFdmrFPqF8rjh8iiRiupfQ4KLrBCL8dAivLiM2nh+1bJQeMb2ZglmIlGZdfTtgGdXH6H/hGVeg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>M.FormSelect.init(document.querySelector('#status'))</script>
     
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js" integrity="sha512-P4rrEImABBYtBFdmrFPqF8rjh8iiRiupfQ4KLrBCL8dAivLiM2nh+1bJQeMb2ZglmIlGZdfTtgGdXH6H/hGVeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>       
-      <script>M.FormSelect.init(document.querySelector('#status'))</script>
-      <script> M.Sidenav.init(document.querySelector('.sidenav'))</script>
-      <script>CKEDITOR.replace("body",{plugins:'wysiwygarea, toolbar, basicstyles, link'})</script>
-     
+
+
+    <script> M.Sidenav.init(document.querySelector('.sidenav'))</script>
+    <script>CKEDITOR.replace("body", { plugins: 'wysiwygarea, toolbar, basicstyles, link' })</script>
+
 
     </main>
 
- 
-<!-- <script src="/javascripts/validateForms.js"></script> -->
+
+    <!-- <script src="/javascripts/validateForms.js"></script> -->
 
 
 </body>
+
 </html>

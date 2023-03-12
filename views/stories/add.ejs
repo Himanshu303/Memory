@@ -1,16 +1,16 @@
 <h3>Add Story</h3>
 <div class="row">
-    <form action="/stories" method="POST" class="col s12">
+    <form action="/stories" method="POST" class="validate col s12">
         <div class="row">
             <div class="input-field">
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" required class="validate" data-error="Please enter a title">
                 <label for="title">Title</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field">
-                <select id="status" name="status" required>
+                <select id="status" name="status" required class="validate" data-error="Please provide a title">
                     <option value="Public" selected>Public</option>
                     <option value="Private">Private</option>
                 </select>
