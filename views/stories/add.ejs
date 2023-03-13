@@ -1,35 +1,31 @@
 <h3>Add Story</h3>
 <div class="row">
-    <form action="/stories" method="POST" class="validate col s12">
-        <div class="row">
-            <div class="input-field">
-                <input type="text" id="title" name="title" required class="validate" data-error="Please enter a title">
-                <label for="title">Title</label>
-            </div>
-        </div>
+    <form action="/stories" method="POST">
 
-        <div class="row">
-            <div class="input-field">
-                <select id="status" name="status" required class="validate" data-error="Please provide a title">
-                    <option value="Public" selected>Public</option>
-                    <option value="Private">Private</option>
-                </select>
-                <label for="status">Status</label>
-            </div>
-        </div>
+        <div class="mb-3">
+            <label for="title">Title</label>
+         
+                <input type="text" class="form-control" id="title" name="title" required>
+       </div>
+   
 
-        <div class="row">
-            <div class="input-field">
-                <h5>Tell Us Your Story:</h5>
+       <div class="mb-3">
+          <select class="form-select" name="status" required>
+            <option value="Public">Public</option>
+            <option value="Private">Private</option>
+          </select>
+   </div>
+
+     <div class="mb-3">
+        <h5>Tell Us Your Story:</h5>
                 <textarea id="body" name="body" required></textarea>
-            </div>
         </div>
 
      
-          <button class="btn waves-effect waves-light" type="submit" name="action">Save
+          <button class="btn btn-primary" type="submit" name="action">Save
             
           </button>
-            <a href="/dashboard" class="btn waves-effect waves-light red">Cancel</a>
+            <a href="/dashboard" class="btn btn-danger">Cancel</a>
   
     </form>
 </div>

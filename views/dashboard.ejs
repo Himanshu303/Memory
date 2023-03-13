@@ -2,26 +2,28 @@
 <p>Here are your stories</p>
 
 <% if(stories.length!=0)  { %>  
-  <table class="striped">
+  <table class="table table-striped  my-4">
     <thead>
       <tr> 
-        <th>Title</th>
+        <th >Title</th>
         <th>Date</th>
         <th>Status</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
     <tbody>
         <% for(let story of stories) { %>
           <tr>
-            <td><a href="/stories/<%= story.id %>"><%= story.title %></a></td>
+            <td><a href="/stories/<%= story.id %>" style="text-decoration: none;"><%= story.title %></a></td>
             <td><%= formatDate(story.createdAt,'Do MMMM, YYYY h:mm:ss a') %></td>
-            <td><span class="dash-status"><%= story.status %></span></td>
+            <td><span class="badge bg-secondary"><%= story.status %></span></td>
             <td>
-                <a href="/stories/edit/<%=story._id%>" class="btn btn-float">
-                <i class="fas fa-edit"></i></a>
-
-                <form action="/stories/<%=story._id%>?_method=DELETE" method="POST"><button class="btn red" type="submit"> <i class="fas fa-trash"></i></button></form>
+              <span> <a href="/stories/edit/<%=story._id%>" class="btn btn-primary btn-sm">
+                <i class="fas fa-edit"></i></a> &ThickSpace;
+                <form style="display:inline;" action="/stories/<%=story._id%>?_method=DELETE" method="POST"><button class="btn btn-danger btn-sm" type="submit"> <i class="fas fa-trash"></i></button></form></span>
+               
+                </td>
             </td>
           </tr>
 

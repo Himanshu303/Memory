@@ -1,33 +1,68 @@
-<h1>Stories</h1>
-<div class="row">
+<!-- <h1>Stories</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
   <% if(stories.length!=0)  { %>  
-  
-          <% for(let story of stories) { %>
-                <div class="col s12 m4">
-                  <div class="card">
-                    <div class="card-image">
-                      <%- editIcon(story.user, loggedInUser, story._id) %>
-                    </div>
-                    <div class="card-content centre-align">
-                      <h5><%= story.title %></h5> 
-                      <p><%- stripTags(truncate(story.body,150))%> </p>
-                        <br>
-                        <div class="chip">
-                            <img src="<%= story.user.image %>" alt="">
-                            <a href="/stories/user/<%= story.user._id %>"><%= story.user.firstName %></a>
-                        </div>
-                    </div>
-                    <div class="card-action centre-align">
-                      <a href="/stories/<%= story._id %>" class="btn grey">Read More</a>
-                    </div>
-                  </div>
+    <% for(let story of stories) { %>
+      <div class="col">
+        <div class="card" style="width: 25rem; height: 18rem;">
+          <div class="card-body">
+            <%- editIcon(story.user, loggedInUser, story._id) %>
+            <h5 class="card-title"><%= story.title %></h5>
+            <p class="card-text"><%- stripTags(truncate(story.body,180))%></p>
+            <div class="card-body justify-content-center align-items-center">
+              <div class="text-center">
+                <div class="chip">
+                  <img src="<%= story.user.image %>" alt="Contact Person"> 
+                  <a style="text-decoration:none" href="/stories/user/<%= story.user._id %>"><%= story.user.firstName %></a>
+                    <br> <br>
                 </div>
-  
-            <% } %>
-
-  
-  <% } else {  %>
-  
-    <p>You have not created stories</p>
+              </div>
+              <div class="text-center">
+                <div class="mx-auto">
+                  <a href="/stories/<%= story._id %>" class="btn btn-md btn-outline-secondary">Read More</a>
+                </div>              </div>
+            </div>
+        
+           
+          </div>
+         
+        </div>
+      </div>
     <% } %>
+  <% } else {  %>
+    <p>You have not created stories</p>
+  <% } %>
+</div>
+ -->
+
+
+ <h1>Stories</h1>
+ <div class="container">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% if(stories.length!=0)  { %>  
+    <% for(let story of stories) { %>
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <%- editIcon(story.user, loggedInUser, story._id) %>
+        <h5 class="card-title fw-bold"><%= story.title %></h5>
+        <p class="card-text"><%- stripTags(truncate(story.body,100)) %></p>
+        <div class="chip">
+          <img src="<%= story.user.image %>" alt="Contact Person" class="chip-img"> 
+          <span class="chip-text"><a style="text-decoration:none" href="/stories/user/<%= story.user._id %>"><%= story.user.firstName %></a></span>
+        </div>
+        <hr class="my-3">
+        <div class="mt-3">
+        
+          <a href="/stories/<%= story._id %>" class="btn btn-primary d-block">Read More</a>
+           
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+  <% } else {  %>
+    <p>You have not created stories</p>
+  <% } %>
+</div>
 </div>
