@@ -19,10 +19,11 @@
             <td><%= formatDate(story.createdAt,'Do MMMM, YYYY h:mm:ss a') %></td>
             <td><span class="badge bg-secondary"><%= story.status %></span></td>
             <td>
-              <span> <a href="/stories/edit/<%=story._id%>" class="btn btn-primary btn-sm">
-                <i class="fas fa-edit"></i></a> &ThickSpace;
-                <form style="display:inline;" action="/stories/<%=story._id%>?_method=DELETE" method="POST"><button class="btn btn-danger btn-sm" type="submit"> <i class="fas fa-trash"></i></button></form></span>
-               
+               <a href="/stories/edit/<%=story._id%>" class="btn btn-primary btn-sm">
+                <i class="fas fa-edit"></i></a> 
+                </td>
+                <td>
+                <form style="display:inline;" action="/stories/<%=story._id%>?_method=DELETE" method="POST"><button class="btn btn-danger btn-sm" type="submit"> <i class="fas fa-trash"></i></button></form>
                 </td>
             </td>
           </tr>
