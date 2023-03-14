@@ -56,6 +56,7 @@ app.use((req,res,next)=>{
   next();
 })
 
+
 //Request from client to server
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
