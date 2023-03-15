@@ -1,42 +1,28 @@
-<!-- <h1>Stories</h1>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <% if(stories.length!=0)  { %>  
-    <% for(let story of stories) { %>
-      <div class="col">
-        <div class="card" style="width: 25rem; height: 18rem;">
-          <div class="card-body">
-            <%- editIcon(story.user, loggedInUser, story._id) %>
-            <h5 class="card-title"><%= story.title %></h5>
-            <p class="card-text"><%- stripTags(truncate(story.body,180))%></p>
-            <div class="card-body justify-content-center align-items-center">
-              <div class="text-center">
-                <div class="chip">
-                  <img src="<%= story.user.image %>" alt="Contact Person"> 
-                  <a style="text-decoration:none" href="/stories/user/<%= story.user._id %>"><%= story.user.firstName %></a>
-                    <br> <br>
-                </div>
-              </div>
-              <div class="text-center">
-                <div class="mx-auto">
-                  <a href="/stories/<%= story._id %>" class="btn btn-md btn-outline-secondary">Read More</a>
-                </div>              </div>
-            </div>
-        
-           
-          </div>
-         
-        </div>
-      </div>
-    <% } %>
-  <% } else {  %>
-    <p>You have not created stories</p>
-  <% } %>
-</div>
- -->
 
 
- <h1>Stories</h1>
- <div class="container">
+<% if(isSearchEnabled)  {%>
+  <h3>
+    <% if(stories.length===1)  {%>
+      Total <%= stories.length %> story found 
+    <%} else {%>
+      Total <%= stories.length %> stories found 
+    <%}%>
+  </h3>
+<%} else {%>
+<h3>Public Stories</h3>
+<%}%>
+
+ <form class="d-flex mx-auto my-2 my-lg-0" action="/stories/search" method="GET">
+  <% if(isSearchEnabled) { %>
+    <input class="form-control me-2" type="query" name="query" value="<%=query%>" placeholder="Search" aria-label="q">
+    <% } else { %>
+      <input class="form-control me-2" type="query" name="query" placeholder="Search" aria-label="q">
+      <% }%>
+ 
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<br> <br>
+<div class="container">
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% if(stories.length!=0)  { %>  
     <% for(let story of stories) { %>
@@ -47,7 +33,7 @@
         <h5 class="card-title fw-bold"><%= story.title %></h5>
         <p class="card-text"><%- stripTags(truncate(story.body,100)) %></p>
         <div class="chip">
-          <img src="<%= story.user.image %>" alt="Contact Person" class="chip-img"> 
+          <img src="<%= story.user.image %>" alt="" class="chip-img"> 
           <span class="chip-text"><a style="text-decoration:none" href="/stories/user/<%= story.user._id %>"><%= story.user.firstName %></a></span>
         </div>
         <hr class="my-3">
@@ -62,7 +48,14 @@
   </div>
   <% } %>
   <% } else {  %>
+
+    <% if(isSearchEnabled)  {%>
+    
+    <%} else {%>
     <p>You have not created stories</p>
+    <%}%>
+
+   
   <% } %>
 </div>
 </div>

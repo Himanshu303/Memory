@@ -8,6 +8,7 @@ const {
   editIcon,
   statusList,
   formatDate,
+  escapeRegExp
 } = require("../helpers/ejs");
 
 
@@ -18,6 +19,53 @@ router.get("/add", ensureAuth, (req, res) => {
 });
 
 
+router.get("/search",async(req,res)=>{
+  const {query}=req.query;
+
+  if(query.trim()==='')
+  { 
+    console.log("pzl dont come here");
+    res.redirect("/stories");
+
+  }
+  else 
+  {
+    try {
+      const stories = await Story.find({
+        $and:[
+          {
+          $or:[
+           { title: { $regex: escapeRegExp(query), $options: 'i' } }, // search for query in title field using regex and case-insensitive matching
+            { body: { $regex: escapeRegExp(query), $options: 'i' } } 
+          ]
+        },
+          {
+              status:'Public'
+          }
+        ]
+      })
+        .populate("user")
+        .sort({ createdAt: "desc" });
+      const isSearchEnabled=true
+      res.render("stories/index", {
+        stories,
+        query,
+        isSearchEnabled,
+        layout: "layouts/boilerplate",
+        truncate,
+        stripTags,
+        editIcon,
+      });
+  
+    } catch (err) {
+      console.log(err);
+      res.render("error", { err, layout: "layouts/boilerplate" });
+    }
+
+  }
+  
+      
+})
 
 
 // @desc Show single story
@@ -76,10 +124,11 @@ router.get("/", ensureAuth, async (req, res) => {
     const stories = await Story.find({ status: "Public" })
       .populate("user")
       .sort({ createdAt: "desc" });
-
+    const isSearchEnabled=false
 
     res.render("stories/index", {
       stories,
+      isSearchEnabled,
       layout: "layouts/boilerplate",
       truncate,
       stripTags,
