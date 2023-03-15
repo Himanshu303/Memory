@@ -2,22 +2,22 @@
 
 <% if(isSearchEnabled)  {%>
   <h3>
-    <% if(stories.length===1)  {%>
-      Total <%= stories.length %> story found 
-    <%} else {%>
-      Total <%= stories.length %> stories found 
-    <%}%>
+          <% if(stories.length===1)  {%>
+            Total <%= stories.length %> story found 
+          <%} else {%>
+            Total <%= stories.length %> stories found 
+          <%}%>
   </h3>
-<%} else {%>
-<h3>Public Stories</h3>
+          <%} else {%>
+          <h3>Public Stories</h3>
 <%}%>
 
  <form class="d-flex mx-auto my-2 my-lg-0" action="/stories/search" method="GET">
   <% if(isSearchEnabled) { %>
-    <input class="form-control me-2" type="query" name="query" value="<%=query%>" placeholder="Search" aria-label="q">
-    <% } else { %>
-      <input class="form-control me-2" type="query" name="query" placeholder="Search" aria-label="q">
-      <% }%>
+            <input class="form-control me-2" type="query" name="query" value="<%=query%>" placeholder="Search" aria-label="q">
+            <% } else { %>
+              <input class="form-control me-2" type="query" name="query" placeholder="Search" aria-label="q">
+   <% }%>
  
   <button class="btn btn-outline-success" type="submit">Search</button>
 </form>

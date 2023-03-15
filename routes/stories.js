@@ -233,9 +233,12 @@ router.get("/user/:userId", ensureAuth, async (req, res) => {
       status: "Public",
     }).populate("user");
 
+    const isSearchEnabled=false
+
     res.render("stories/index", {
       stories,
       truncate,
+      isSearchEnabled,
       stripTags,
       editIcon,
       layout: "layouts/boilerplate",
