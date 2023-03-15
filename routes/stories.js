@@ -8,9 +8,8 @@ const {
   editIcon,
   statusList,
   formatDate,
-  escapeRegExp
+  escapeRegExp,
 } = require("../helpers/ejs");
-
 
 // @desc Show add page
 // @route GET /stories/add
@@ -18,35 +17,29 @@ router.get("/add", ensureAuth, (req, res) => {
   res.render("stories/add", { layout: "layouts/boilerplate" });
 });
 
+router.get("/search", async (req, res) => {
+  const { query } = req.query;
 
-router.get("/search",async(req,res)=>{
-  const {query}=req.query;
-
-  if(query.trim()==='')
-  { 
-    console.log("pzl dont come here");
+  if (query.trim() === "") {
     res.redirect("/stories");
-
-  }
-  else 
-  {
+  } else {
     try {
       const stories = await Story.find({
-        $and:[
+        $and: [
           {
-          $or:[
-           { title: { $regex: escapeRegExp(query), $options: 'i' } }, // search for query in title field using regex and case-insensitive matching
-            { body: { $regex: escapeRegExp(query), $options: 'i' } } 
-          ]
-        },
+            $or: [
+              { title: { $regex: escapeRegExp(query), $options: "i" } }, // search for query in title field using regex and case-insensitive matching
+              { body: { $regex: escapeRegExp(query), $options: "i" } },
+            ],
+          },
           {
-              status:'Public'
-          }
-        ]
+            status: "Public",
+          },
+        ],
       })
         .populate("user")
         .sort({ createdAt: "desc" });
-      const isSearchEnabled=true
+      const isSearchEnabled = true;
       res.render("stories/index", {
         stories,
         query,
@@ -56,17 +49,12 @@ router.get("/search",async(req,res)=>{
         stripTags,
         editIcon,
       });
-  
     } catch (err) {
       console.log(err);
       res.render("error", { err, layout: "layouts/boilerplate" });
     }
-
   }
-  
-      
-})
-
+});
 
 // @desc Show single story
 // @route GET /stories/:id
@@ -74,11 +62,9 @@ router.get("/:id", ensureAuth, async (req, res) => {
   try {
     let story = await Story.findById(req.params.id).populate("user");
 
-
     if (!story) {
       return res.render("404error", { layout: "layouts/boilerplate" });
     }
-
 
     res.render("stories/show", {
       story,
@@ -87,17 +73,11 @@ router.get("/:id", ensureAuth, async (req, res) => {
       formatDate,
       layout: "layouts/boilerplate",
     });
-
-
-  
   } catch (err) {
     console.log(err);
     res.render("404error", { err, layout: "layouts/boilerplate" });
   }
 });
-
-
-
 
 // @desc Process the add form
 // @route Post /stories
@@ -107,15 +87,11 @@ router.post("/", ensureAuth, async (req, res) => {
     console.log(req.body);
     await Story.create(req.body);
     res.redirect("/dashboard");
-  
   } catch (err) {
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
 });
-
-
-
 
 // @desc Show all stories
 // @route GET /stories
@@ -124,7 +100,7 @@ router.get("/", ensureAuth, async (req, res) => {
     const stories = await Story.find({ status: "Public" })
       .populate("user")
       .sort({ createdAt: "desc" });
-    const isSearchEnabled=false
+    const isSearchEnabled = false;
 
     res.render("stories/index", {
       stories,
@@ -134,15 +110,11 @@ router.get("/", ensureAuth, async (req, res) => {
       stripTags,
       editIcon,
     });
-
   } catch (err) {
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
 });
-
-
-
 
 // @desc Show Edit story page
 // @route GET /stories/edit/:id
@@ -150,35 +122,24 @@ router.get("/edit/:id", ensureAuth, async (req, res) => {
   try {
     const story = await Story.findOne({ _id: req.params.id });
 
-
     if (!story) {
       return res.render("404error", { layout: "layouts/boilerplate" });
     }
 
-
     if (req.user.id != story.user) {
       return res.redirect("/stories");
-
-
-    }else {
-
+    } else {
       return res.render("stories/edit", {
         story,
         statusList,
         layout: "layouts/boilerplate",
       });
-
     }
-  } 
-  
-  catch (err) {
+  } catch (err) {
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
 });
-
-
-
 
 // @desc Process the edited form
 // @route PUT /stories/edit/:id
@@ -192,12 +153,11 @@ router.put("/edit/:id", ensureAuth, async (req, res) => {
     if (req.user.id != story.user) {
       return res.redirect("/stories");
     } else {
-      story = await Story.findByIdAndUpdate(
-        { _id: req.params.id },
-        req.body,
-        { new: true, runValidators: true }
-      );
-      console.log("successfull");
+      story = await Story.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+        new: true,
+        runValidators: true,
+      });
+
       res.redirect("/dashboard");
     }
   } catch (err) {
@@ -205,9 +165,6 @@ router.put("/edit/:id", ensureAuth, async (req, res) => {
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
 });
-
-
-
 
 //@desc Delete the specific story
 //@route DELETE /stories/id
@@ -221,9 +178,6 @@ router.delete("/:id", ensureAuth, async (req, res) => {
   }
 });
 
-
-
-
 //@desc User Stories
 //@route GET /stories/user/:userId
 router.get("/user/:userId", ensureAuth, async (req, res) => {
@@ -233,7 +187,7 @@ router.get("/user/:userId", ensureAuth, async (req, res) => {
       status: "Public",
     }).populate("user");
 
-    const isSearchEnabled=false
+    const isSearchEnabled = false;
 
     res.render("stories/index", {
       stories,
@@ -249,7 +203,4 @@ router.get("/user/:userId", ensureAuth, async (req, res) => {
   }
 });
 
-
-
-
-module.exports=router
+module.exports = router;

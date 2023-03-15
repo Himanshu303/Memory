@@ -1,11 +1,12 @@
-<h3>Welcome <%=name%>  </h3>
+<h3>Welcome <%=name%>
+</h3>
 <p>Here are your stories</p>
 
-<% if(stories.length!=0)  { %>  
+<% if(stories.length!=0) { %>
   <table class="table table-striped  my-4">
     <thead>
-      <tr> 
-        <th >Title</th>
+      <tr>
+        <th>Title</th>
         <th>Date</th>
         <th>Status</th>
         <th></th>
@@ -13,26 +14,33 @@
       </tr>
     </thead>
     <tbody>
-        <% for(let story of stories) { %>
-          <tr>
-            <td><a href="/stories/<%= story.id %>" style="text-decoration: none;"><%= story.title %></a></td>
-            <td><%= formatDate(story.createdAt,'Do MMMM, YYYY h:mm:ss a') %></td>
-            <td><span class="badge bg-secondary"><%= story.status %></span></td>
-            <td>
-               <a href="/stories/edit/<%=story._id%>" class="btn btn-primary btn-sm">
-                <i class="fas fa-edit"></i></a> 
-                </td>
-                <td>
-                <form style="display:inline;" action="/stories/<%=story._id%>?_method=DELETE" method="POST"><button class="btn btn-danger btn-sm" type="submit"> <i class="fas fa-trash"></i></button></form>
-                </td>
-            </td>
-          </tr>
+      <% for(let story of stories) { %>
+        <tr>
+          <td><a href="/stories/<%= story.id %>" style="text-decoration: none;">
+              <%= story.title %>
+            </a></td>
+          <td>
+            <%= formatDate(story.createdAt,'Do MMMM, YYYY h:mm:ss a') %>
+          </td>
+          <td><span class="badge bg-secondary">
+              <%= story.status %>
+            </span></td>
+          <td>
+            <a href="/stories/edit/<%=story._id%>" class="btn btn-primary btn-sm">
+              <i class="fas fa-edit"></i></a>
+          </td>
+          <td>
+            <form style="display:inline;" action="/stories/<%=story._id%>?_method=DELETE" method="POST"><button
+                class="btn btn-danger btn-sm" type="submit"> <i class="fas fa-trash"></i></button></form>
+          </td>
+          </td>
+        </tr>
 
-          <% } %>
+        <% } %>
     </tbody>
   </table>
 
-<% } else {  %>
+  <% } else { %>
 
-  <p>You have not created stories</p>
-  <% } %>
+    <p>You have not created stories</p>
+    <% } %>

@@ -1,24 +1,23 @@
-
-p{
+p {
   margin: 10px 0 !important;
 }
 
-.login-container{
+.login-container {
   width: 400px;
-  margin-top:50px ;
+  margin-top: 50px;
   text-align: center;
 }
 
-.fa-small{
+.fa-small {
   font-size: 16px !important;
 }
 
-.btn-float{
-  float:left;
+.btn-float {
+  float: left;
   margin-right: 10px;
 }
 
-.img-small{
+.img-small {
   width: 180px;
 }
 
@@ -40,11 +39,13 @@ p{
   border-radius: 50%;
 }
 
-.top-buffer { margin-top:20px; }
+.top-buffer {
+  margin-top: 20px;
+}
 
 .rel {
   position: relative;
-  height:300px;
+  height: 300px;
   width: 600px;
 }
 .read-more {
@@ -56,7 +57,6 @@ p{
   background-image: url("http://placehold.it/600x300");
   height: 300px;
   width: 600px;
-  
 }
 .table td {
   vertical-align: middle;
@@ -65,4 +65,3 @@ p{
 table tr {
   height: 70px;
 }
-

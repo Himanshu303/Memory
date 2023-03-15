@@ -1,31 +1,47 @@
 <h3>Add Story</h3>
 <div class="row">
-    <form action="/stories" method="POST">
+  <form action="/stories" method="POST" novalidate id="form-add" class="validated-form"
+    onsubmit="return validateForm()">
 
-        <div class="mb-3">
-            <label for="title">Title</label>
-         
-                <input type="text" class="form-control" id="title" name="title" required>
-       </div>
-   
+    <div class="mb-3">
+      <label for="title">Title</label>
 
-       <div class="mb-3">
-          <select class="form-select" name="status" required>
-            <option value="Public">Public</option>
-            <option value="Private">Private</option>
-          </select>
-   </div>
+      <input type="text" class="form-control" id="title" name="title" required>
+      <div class="valid-feedback">Looks Good</div>
+      <div class="invalid-feedback">
+        Please enter title
+      </div>
 
-     <div class="mb-3">
-        <h5>Tell Us Your Story:</h5>
-                <textarea id="body" name="body" required></textarea>
-        </div>
+    </div>
 
-     
-          <button class="btn btn-primary" type="submit" name="action">Save
-            
-          </button>
-            <a href="/dashboard" class="btn btn-danger">Cancel</a>
-  
-    </form>
+
+    <div class="mb-3">
+      <select class="form-select" name="status" required>
+        <option value="Public">Public</option>
+        <option value="Private">Private</option>
+      </select>
+      <div class="valid-feedback">Looks good</div>
+
+    </div>
+
+    <div class="mb-3">
+      <h5>Tell Us Your Story:</h5>
+      <textarea id="body" name="body" required></textarea>
+
+      <div class="valid-feedback" id="valid">
+
+      </div>
+      <div class="invalid-feedback" id="invalid">
+
+      </div>
+    </div>
+
+
+    <button class="btn btn-primary" type="submit" name="action">Save
+
+    </button>
+    <a href="/dashboard" class="btn btn-danger">Cancel</a>
+
+  </form>
+
 </div>

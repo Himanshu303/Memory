@@ -9,51 +9,79 @@
   <title>Memory</title>
 
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.ckeditor.com/4.16.1/basic/ckeditor.js"></script>
+
+
+
+
+
   <link rel="stylesheet" href="/css/style.css">
   <script type="javascript">
-
-
    </script>
+
+  <script>
+    function validateForm() {
+      var body = CKEDITOR.instances.body.getData();
+      body = body.replace(/<(?:.|\n)*?>/gm, '');
+      body = body.replace(/\&nbsp;/gm, '');
+      console.log(body);
+      if (body.trim() === "") {
+        document.getElementById("body").classList.remove("is-valid");
+        document.getElementById("valid").innerHTML = "";
+        document.getElementById("body").classList.add("is-invalid");
+        document.getElementById("invalid").innerHTML = "Please enter body";
+        return false;
+      } else {
+        document.getElementById("body").classList.remove("is-invalid");
+        document.getElementById("invalid").innerHTML = "";
+        document.getElementById("body").classList.add("is-valid");
+        document.getElementById("valid").innerHTML = "Looks good";
+        return true;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelector("form").addEventListener("reset", function () {
+        document.getElementById("body").classList.remove("is-invalid", "is-valid");
+      });
+    });
+  </script>
+
 </head>
 
 <body class="d-flex flex-column vh-100">
 
   <%- include("../partials/navbar") %>
     <div class="container">
-     <div><span>&nbsp;</span></div>
+      <div><span>&nbsp;</span></div>
       <%- body %>
         <%- include("../partials/add-btn") %>
     </div>
 
-
-
-
-
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
       integrity="sha512-P4rrEImABBYtBFdmrFPqF8rjh8iiRiupfQ4KLrBCL8dAivLiM2nh+1bJQeMb2ZglmIlGZdfTtgGdXH6H/hGVeg=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>M.FormSelect.init(document.querySelector('#status'))</script>
-    
+      -->
 
-
-    <script> M.Sidenav.init(document.querySelector('.sidenav'))</script>
     <script>CKEDITOR.replace("body", { plugins: 'wysiwygarea, toolbar, basicstyles, link' })</script>
 
-
-    </main>
-
-
-    <!-- <script src="/javascripts/validateForms.js"></script> -->
+    <script src="/javascript/validatedForms.js"></script>
 
 
-    
+
+
 </body>
 
 </html>
