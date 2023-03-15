@@ -39,6 +39,7 @@ router.get("/search", async (req, res) => {
       })
         .populate("user")
         .sort({ createdAt: "desc" });
+      
       const isSearchEnabled = true;
       res.render("stories/index", {
         stories,

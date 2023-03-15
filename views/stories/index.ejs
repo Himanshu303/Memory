@@ -28,6 +28,7 @@
               <div class="col">
                 <div class="card h-100">
                   <div class="card-body">
+                    <div>
                     <%- editIcon(story.user, loggedInUser, story._id) %>
                       <h5 class="card-title fw-bold">
                         <%= story.title %>
@@ -40,13 +41,19 @@
                             <%= story.user.firstName %>
                           </a></span>
                       </div>
-                      <hr class="my-3">
+                    </div>
                       <div class="mt-3">
-
-                        <a href="/stories/<%= story._id %>" class="btn btn-primary d-block">Read More</a>
+                      <div>
+                        <hr class="my-3">
+                      </div>
+                     
+                      <div class="mt-3">
+                        
+                        <a href="/stories/<%= story._id %>"  class="btn btn-primary d-block">Read More</a>
 
 
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
