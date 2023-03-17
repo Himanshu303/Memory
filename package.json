@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "App to create public and private stories on your life",
   "main": "app.js",
-  "engines": {"node": "14.x"},
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "start": "node app.js"
+    "start": "cross-env NODE_ENV=production node app",
+    "dev": "cross-env NODE_ENV=development nodemon app"
   },
   "author": "Himanshu Marathe",
   "license": "MIT",
   "dependencies": {
+    "cloudinary": "^1.35.0",
     "connect-mongo": "^4.6.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
@@ -21,10 +25,11 @@
     "moment": "^2.29.4",
     "mongoose": "^7.0.1",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0"
   },
-  
   "devDependencies": {
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.21"

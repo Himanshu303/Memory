@@ -1,7 +1,6 @@
 <h3>Add Story</h3>
 <div class="row">
-  <form action="/stories" method="POST" novalidate id="form-add" class="validated-form"
-    onsubmit="return validateForm()">
+  <form action="/stories" method="POST"  id="form-add" class="validated-form" onsubmit="return validateForm()" novalidate enctype="multipart/form-data">
 
     <div class="mb-3">
       <label for="title">Title</label>
@@ -21,6 +20,17 @@
         <option value="Private">Private</option>
       </select>
       <div class="valid-feedback">Looks good</div>
+
+    </div>
+
+    <div class="mb-3">
+      <label for="formFileMultiple" class="form-label">Upload Images</label>
+      <input type="file" class="form-control" id="formFileMultiple" name="image" multiple required>
+   
+      <div class="valid-feedback">Looks Good</div>
+      <div class="invalid-feedback">
+        Please upload an image
+      </div>
 
     </div>
 

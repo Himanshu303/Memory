@@ -23,6 +23,12 @@ const StorySchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  images:[
+    {
+      url:String,
+      fileName:String
+    }
+  ]
 });
 
 module.exports = mongoose.model("Story", StorySchema);

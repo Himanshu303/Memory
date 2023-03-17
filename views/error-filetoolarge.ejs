@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-6 offset-3">
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">
+        <%= err.message %>
+      </h4>
+      <p>
+        Please enter an image with size <2MB
+      </p>
+     
+    </div>
+    <% if(page==='add') { %>
+      <a href="/stories/add" style="text-decoration: none;">Go back</a>
+      <% } else {%>
+        <a href="/stories/edit/<%=story_id%>" style="text-decoration: none;">Go back</a>
+    <%}%>
+  </div>
+</div>

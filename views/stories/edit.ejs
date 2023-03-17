@@ -1,7 +1,7 @@
 <h3>Edit Story</h3>
 <div class="row">
-  <form action="/stories/edit/<%=story._id%>?_method=PUT" method="POST" class="validated-form" novalidate
-    onsubmit="return validateForm()">
+  <form action="/stories/<%=story._id%>?_method=PUT" method="POST" class="validated-form" 
+    onsubmit="return validateForm()" novalidate enctype="multipart/form-data">
     <br>
     <div class="mb-3">
       <label for="title">Title</label>
@@ -23,12 +23,20 @@
       </select>
       <div class="valid-feedback">Looks Good</div>
       <div class="invalid-feedback">
-        Please enter title
+        Please enter Status
       </div>
     </div>
 
 </div>
+<div class="mb-3">
+  <label for="image" class="form-label">Add an Image</label>
+  <input type="file" class="form-control" id="image" name="image" multiple>
+  <div class="valid-feedback">Looks Good</div>
+  <div class="invalid-feedback">
+    Please upload an image
+  </div>
 
+</div>
 
 <div class="mb-3">
   <h5>Tell Us Your Story:</h5>
@@ -40,6 +48,17 @@
   <div class="invalid-feedback" id="invalid">
 
   </div>
+
+</div>
+
+<div class="mb-3">
+  <% story.images.forEach((img,i)=>{ %>
+      <img src="<%=img.url%>" alt="" class="img-thumbnail" width="800" height="600">
+      <div class="form-check-inline">
+        <input type="checkbox" id="img-<%=i%>" name="deleteImages[]" value="<%=img.fileName%>">
+      </div>
+      <label for="img-<%=i%>">Delete</label>
+    <%})%>
 
 </div>
 

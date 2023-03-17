@@ -1,19 +1,43 @@
 <div class="row">
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-10">
         <h3>
             <%=story.title%>
                 <small> <%- editIcon(story.user, loggedInUser, story._id,false) %></small>
         </h3>
+       
+            <div id="storyCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                   <% story.images.forEach(function(img,i) {  %>
+                        <div class="<%= i=== 0 ? "carousel-item active": "carousel-item" %>">
+                            <img class="d-block w-100 card-img-top" src="<%=img.url%>" alt="" height="600" width="800">
+                          </div>
+                    <% }) %>
+                
+                </div>
+                <% if(story.images.length >1)  { %>
+                <a class="carousel-control-prev" href="#storyCarousel" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#storyCarousel" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+                <%}%>
+              </div>
         <div class="card story">
             <div class="card-body">
                 <h5 class="card-title">
-                    <%= formatDate(story.createdAt,'Do MMMM, YYYY | h:mm:ss a') %>
+                   Date Posted : <%= formatDate(story.createdAt,'Do MMMM, YYYY | h:mm:ss a') %>
                 </h5>
+    
                 <p class="card-text"><%-(story.body) %></p>
+               
             </div>
         </div>
+ 
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-2">
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">
