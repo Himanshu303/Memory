@@ -53,11 +53,11 @@
 
 <div class="mb-3">
   <% story.images.forEach((img,i)=>{ %>
-      <img src="<%=img.url%>" alt="" class="img-thumbnail" width="800" height="600">
-      <div class="form-check-inline">
+      <img src="<%=img.url%>" alt="" class="show-img img-thumbnail" width="800" height="600">
+      <div class="form-check-inline"> 
         <input type="checkbox" id="img-<%=i%>" name="deleteImages[]" value="<%=img.fileName%>">
       </div>
-      <label for="img-<%=i%>">Delete</label>
+      <label for="img-<%=i%>">Delete</label> <br>
     <%})%>
 
 </div>

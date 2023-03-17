@@ -9,7 +9,7 @@
                 <div class="carousel-inner">
                    <% story.images.forEach(function(img,i) {  %>
                         <div class="<%= i=== 0 ? "carousel-item active": "carousel-item" %>">
-                            <img class="d-block w-100 card-img-top" src="<%=img.url%>" alt="" height="600" width="800">
+                            <img class="show-img d-block w-100 card-img-top" src="<%=img.url%>" alt="">
                           </div>
                     <% }) %>
                 

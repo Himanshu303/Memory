@@ -69,3 +69,8 @@ table tr {
 .carousel-control-prev /*, .carousel-indicators */ {
     filter: invert(100%);
 }
+
+.show-img{
+  max-height: 600px;
+  max-width: 400px;
+}
