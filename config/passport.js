@@ -9,7 +9,7 @@ module.exports = function (passport) {
         clientID:
           "71363137851-g9clrtkqka21ddcknd8cjk0v5tpblakb.apps.googleusercontent.com",
         clientSecret: "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",
-        callbackURL:"https://memory-git-main-himanshu303.vercel.app/auth/google/callback",
+        callbackURL:"/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
         //console.log(profile);

@@ -10,6 +10,7 @@ const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const methodOverride = require("method-override");
+const flash=require("connect-flash");
 
 //Load config
 dotenv.config({ path: "./config/config.env" });
@@ -48,14 +49,22 @@ app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//set global variable
+//flash messages
+app.use(flash());
+
+
+//set global variables
 app.use((req, res, next) => {
   res.locals.loggedInUser = req.user || null;
+  res.locals.success=req.flash("success");
+  res.locals.error=req.flash("error");
+  req.flash('success', '');
+  req.flash('error', '');
   next();
 });
 
 //Request from client to server
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //To support put and delete requests

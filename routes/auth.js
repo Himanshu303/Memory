@@ -18,6 +18,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
+    req.flash("success","Logged in Successfully");
     res.redirect("/dashboard");
   }
 );
@@ -27,6 +28,7 @@ router.get(
 router.get("/logout", (req, res) => {
   req.logout((err) => {
     if (err) return next(err);
+    req.flash("success","Logged out Successfully");
     res.redirect("/");
   });
 });

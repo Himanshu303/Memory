@@ -33,7 +33,7 @@
       var body = CKEDITOR.instances.body.getData();
       body = body.replace(/<(?:.|\n)*?>/gm, '');
       body = body.replace(/\&nbsp;/gm, '');
-      console.log(body);
+    
       if (body.trim() === "") {
         document.getElementById("body").classList.remove("is-valid");
         document.getElementById("valid").innerHTML = "";
@@ -63,6 +63,7 @@
   <%- include("../partials/navbar") %>
     <div class="container">
       <div><span>&nbsp;</span></div>
+      <%- include("../partials/flash") %> 
       <%- body %>
         <%- include("../partials/add-btn") %>
     </div>
@@ -75,6 +76,11 @@
       -->
 
     <script>CKEDITOR.replace("body", { plugins: 'wysiwygarea, toolbar, basicstyles, link' })</script>
+    <script>
+    setTimeout(function() {
+      bootstrap.Alert.getOrCreateInstance(document.querySelector(".alert")).close();
+  }, 4000)
+</script>
 
     <script src="/javascript/validatedForms.js"></script>
 

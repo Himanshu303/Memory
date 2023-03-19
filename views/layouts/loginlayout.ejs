@@ -21,8 +21,10 @@
 
   <!-- %- include("../partials/navbar") %>  -->
   <div class="container mt-5" style="width: 30rem;">
+    <%- include("../partials/flash") %> 
     <div class="card">
       <div class="card-body">
+
         <%- body %>
       </div>
     </div>
@@ -31,7 +33,11 @@
 
 
   </main>
-
+  <script>
+    setTimeout(function() {
+      bootstrap.Alert.getOrCreateInstance(document.querySelector(".alert")).close();
+  }, 4000)
+</script>
 
   <!-- <script src="/javascripts/validateForms.js"></script> -->
 

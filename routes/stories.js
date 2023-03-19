@@ -35,6 +35,8 @@ router.get("/add", ensureAuth, (req, res) => {
   res.render("stories/add", { layout: "layouts/boilerplate" });
 });
 
+
+
 router.get("/search", async (req, res) => {
   const { query } = req.query;
 
@@ -69,6 +71,7 @@ router.get("/search", async (req, res) => {
         editIcon,
       });
     } catch (err) {
+      req.flash("error",err.msg);
       console.log(err);
       res.render("error", { err, layout: "layouts/boilerplate" });
     }
@@ -93,6 +96,7 @@ router.get("/:id", ensureAuth, async (req, res) => {
       layout: "layouts/boilerplate",
     });
   } catch (err) {
+    req.flash("error",err.msg);
     console.log(err);
     res.render("404error", { err, layout: "layouts/boilerplate" });
   }
@@ -106,8 +110,10 @@ router.post("/", ensureAuth, uploadFile, async (req, res) => {
     req.body.images=req.files.map(f=>({url:f.path, fileName:f.filename}));
     const story=new Story(req.body);
     await story.save();
+    req.flash("success","Story added successfully");
     res.redirect("/dashboard");
   } catch (err) {
+    req.flash("error",err.msg);
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
@@ -133,6 +139,7 @@ router.get("/", ensureAuth, async (req, res) => {
       editIcon,
     });
   } catch (err) {
+    req.flash("error",err.msg);
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
@@ -160,6 +167,7 @@ router.get("/edit/:id", ensureAuth, async (req, res) => {
       });
     }
   } catch (err) {
+    req.flash("error",err.msg);
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
@@ -194,9 +202,11 @@ router.put("/:id", ensureAuth, editFile,async (req, res) => {
       const imgs=req.files.map(f=>({url:f.path, fileName:f.filename}));
       story.images.push(...imgs);
       await story.save();
+      req.flash("success","Story edited successfully");
       res.redirect("/dashboard");
     }
   } catch (err) {
+    req.flash("error",err.msg);
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
@@ -211,14 +221,16 @@ router.delete("/:id", ensureAuth, async (req, res) => {
       return res.render("404error", { layout: "layouts/boilerplate" });
     }
 
-    console.log(story);
+   
     for(let file of story.images){
       await cloudinary.uploader.destroy(file.fileName);
     }
 
     await Story.deleteOne({ _id: req.params.id });
+    req.flash("success","Story deleted successfully");
     res.redirect("/dashboard");
   } catch (err) {
+    req.flash("error",err.msg);
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
@@ -244,6 +256,7 @@ router.get("/user/:userId", ensureAuth, async (req, res) => {
       layout: "layouts/boilerplate",
     });
   } catch (err) {
+    req.flash("error",err.msg);
     console.log(err);
     res.render("error", { err, layout: "layouts/boilerplate" });
   }
