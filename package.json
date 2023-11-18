@@ -4,7 +4,7 @@
   "description": "App to create public and private stories on your life",
   "main": "app.js",
   "engines": {
-    "node": "14.x"
+    "node": "20.x"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production node app",
